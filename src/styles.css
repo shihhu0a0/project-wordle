@@ -230,3 +230,34 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.restart {
+  border-style: dotted;
+  padding: 8px 16px;
+  margin-top: 8px;
+}
+
+.virtual-keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 5px;
+}
+
+.keyboard-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 5px;
+}
+
+.keyboayd-button {
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.kayboard-button:hover {
+  background-color: #ddd;
+}

@@ -10,7 +10,6 @@ const GuessInput = ({ handleAddGuess, isGameOver }) => {
         className="guess-input-wrapper"
         onSubmit={(event) => {
           event.preventDefault();
-          console.info({ guess });
           const newGuess = guess;
           handleAddGuess(newGuess);
           setGuess("");

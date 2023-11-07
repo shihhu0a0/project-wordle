@@ -8,19 +8,34 @@ import Guess from "../Guess";
 import GuessInput from "../GuessInput";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+// console.info({ answer });
 
-function Game() {
-  const [guesses, setGuesses] = useState(
-    range(0, NUM_OF_GUESSES_ALLOWED).map(() => {
-      return { guess: "", id: Math.random() };
-    })
-  );
+export const getGuesses = () => {
+  return range(0, NUM_OF_GUESSES_ALLOWED).map(() => {
+    return { guess: "", id: Math.random() };
+  });
+};
+
+const Game = () => {
+  const [answer, setAnswer] = useState(() => sample(WORDS));
+  const [guesses, setGuesses] = useState(getGuesses);
   const [guessNum, setGuessNum] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isWin, setIsWin] = useState(false);
+
+  const handleRestart = () => {
+    setIsGameOver(false);
+    setIsWin(false);
+    setGuessNum(0);
+    setGuesses(getGuesses);
+    setAnswer(sample(WORDS));
+  };
+
+  useEffect(() => {
+    console.info({ answer });
+  }, [answer]);
 
   useEffect(() => {
     if (guessNum > 0) {
@@ -60,6 +75,7 @@ function Game() {
               <strong>Congratulations!</strong> Got it in
               <strong> {guessNum} guesses</strong>.
             </p>
+            <button className="restart" onClick={handleRestart}>Restart</button>
           </div>
         );
       } else {
@@ -68,6 +84,7 @@ function Game() {
             <p>
               Sorry, the correct answer is <strong>{answer}</strong>.
             </p>
+            <button className="restart" onClick={handleRestart}>Restart</button>
           </div>
         );
       }
@@ -81,6 +98,6 @@ function Game() {
       {renderGameOverBanner()}
     </>
   );
-}
+};
 
 export default Game;
