@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 
+import Keyboard from "../Keyboard/Keyboard";
+
 const GuessInput = ({ handleAddGuess, isGameOver }) => {
   const [guess, setGuess] = useState("");
   
-
+  const onKeyPress = (char) => {
+    const newGuess = [...guess, char];
+    setGuess(newGuess.join(''));
+  }
   return (
     <>
       <form
@@ -28,6 +33,7 @@ const GuessInput = ({ handleAddGuess, isGameOver }) => {
           />
         ) : null}
       </form>
+      <Keyboard onKeyPress={onKeyPress}/>
     </>
   );
 };

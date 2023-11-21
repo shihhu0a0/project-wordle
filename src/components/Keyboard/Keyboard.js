@@ -1,6 +1,6 @@
 import React from "react";
 
-const Keyboard = () => {
+const Keyboard = ({onKeyPress}) => {
   const keyboardLayout = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -16,7 +16,11 @@ const Keyboard = () => {
       {keyboardLayout.map((row, rowIndex) => (
         <div key={rowIndex} className="keyboard-row">
           {row.map((char, charIndex) => (
-            <button key={charIndex} onClick={() => handleClick(char)}>
+            <button
+              className="keyboayd-button"
+              key={charIndex}
+              onClick={() => handleClick(char)}
+            >
               {char}
             </button>
           ))}
